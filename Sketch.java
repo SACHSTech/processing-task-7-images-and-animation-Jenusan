@@ -8,8 +8,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Sketch extends PApplet {
-	
-
+	// initializing varibales
   float fltDVDPosX;
   float fltDVDPosY;
   float fltDVDXSpeed = 15;
@@ -23,10 +22,7 @@ public class Sketch extends PApplet {
   float fltCircYSpeed;
   float fltRed;
   float fltGreen;
-  float fltBlue;
-
-  
-
+  float fltBlue; 
 
   public void settings() {
 	// put your size call here
@@ -38,7 +34,7 @@ public class Sketch extends PApplet {
    * values here i.e background, stroke, fill etc.
    */
   public void setup() {
-    // sets up backround image to be Mr.Fabroa 
+    // sets up backround image to be Mr.Fabroa, and scales to size of screen
     PImage fabroa = loadImage("Fabroa.jpg");
     fabroa.resize(width, height);
     image(fabroa, 0, 0);
@@ -66,11 +62,11 @@ public class Sketch extends PApplet {
       fltDVDMove *= -1;
     }
 
-    // changes the X and Y position of the image each time the method is ran though, so that image can move
+    // adds values to the X and Y position of the image each time the method is ran though, so that image can move
     fltDVDPosX += fltDVDXSpeed;
     fltDVDPosY += fltDVDMove + fltDVDYSpeed;
     
-    // prints DVD logo on screen using all past conditions and values
+    // prints DVD logo on screen using all above conditions and values
     PImage dvdLogo = loadImage("DVD.png");
     dvdLogo.resize(width / 3, height / 6);
     image(dvdLogo, fltDVDPosX, fltDVDPosY);
@@ -78,7 +74,7 @@ public class Sketch extends PApplet {
     // processes sinocoidal fucntion so that the Circle can move in a wave motion
     fltCircYSpeed = (float)(Math.sin(fltWave)) * 10;
     
-    // reverses direction of motion of animation once a barrier is reached 
+    // reverses direction of motion of animation once a barrier is reached, and processes random function to be applied to color of circle 
     if (fltCircPosX - 40 < 0 || fltCircPosX + 40> width) {
       fltCircXSpeed *= -1;
       fltRed = random(0,255);
@@ -97,10 +93,8 @@ public class Sketch extends PApplet {
   fltCircPosX += fltCircXSpeed;
     fltCircPosY += fltCircMove + fltCircYSpeed;
 
-  // prints circle on screen using above values
+  // prints circle on screen using above values, and inputs values into fill method
   fill(fltRed, fltGreen, fltBlue);
   ellipse(fltCircPosX, fltCircPosY, 80, 80);
-  
-  // define other methods down here.
 }
 }
