@@ -10,12 +10,21 @@ import processing.core.PImage;
 public class Sketch extends PApplet {
 	
 
-  float dvdposx;
-  float dvdposy;
-  float Xspeed = 15;
-  float Yspeed;
-  float wave;
-  int move = 10;
+  float fltDVDPosX;
+  float fltDVDPosY;
+  float fltDVDXSpeed = 15;
+  float fltDVDYSpeed;
+  float fltWave;
+  float fltDVDMove = 10;
+  float fltCircPosX = 150;
+  float fltCircPosY = 100;
+  float fltCircXSpeed = 20;
+  float fltCircMove = 18;
+  float fltCircYSpeed;
+  float fltRed;
+  float fltGreen;
+  float fltBlue;
+
   
 
 
@@ -45,28 +54,50 @@ public class Sketch extends PApplet {
     image(fabroa, 0, 0);
 
     // processes sinocoidal fucntion so that the DVD logo can move in a wave motion
-    wave += (Math.PI/6);
-    Yspeed = (float)(Math.sin(wave)) * 3;
-
-    // changes the X and Y position of the image each time the method is ran though, so that image can move
-    dvdposx += Xspeed;
-    dvdposy += move + Yspeed;
+    fltWave += (Math.PI/6);
+    fltDVDYSpeed = (float)(Math.sin(fltWave)) * 10;
     
     // reverses direction of motion of animation once a barrier is reached 
-    if(dvdposx > width - (width / 3) || dvdposx < 0){
-      Xspeed *= -1;
+    if(fltDVDPosX > width - (width / 3) || fltDVDPosX < 0){
+      fltDVDXSpeed *= -1;
     }
-    if(dvdposy < 0 || dvdposy > height - (height /6)){
-      Yspeed *= -1;
-      move *= -1;
+    if(fltDVDPosY < 0 || fltDVDPosY > height - (height /6)){
+      fltDVDYSpeed *= -1;
+      fltDVDMove *= -1;
     }
+
+    // changes the X and Y position of the image each time the method is ran though, so that image can move
+    fltDVDPosX += fltDVDXSpeed;
+    fltDVDPosY += fltDVDMove + fltDVDYSpeed;
     
     // prints DVD logo on screen using all past conditions and values
     PImage dvdLogo = loadImage("DVD.png");
     dvdLogo.resize(width / 3, height / 6);
-    image(dvdLogo, dvdposx, dvdposy);
+    image(dvdLogo, fltDVDPosX, fltDVDPosY);
 
+    fltCircYSpeed = (float)(Math.sin(fltWave)) * 10;
+
+    fltCircPosX += fltCircXSpeed;
+    fltCircPosY += fltCircMove + fltCircYSpeed;
+    
+    if (fltCircPosX - 40 < 0 || fltCircPosX + 40> width) {
+      fltCircXSpeed *= -1;
+      fltRed = random(0,255);
+      fltGreen = random(0,255);
+      fltBlue = random(0,255);
+    }
+  
+    if (fltCircPosY - 40 < 0  || fltCircPosY + 40 > height) {
+      fltCircYSpeed *= -1;
+      fltCircMove *= -1;
+      fltRed = random(0,255);
+      fltGreen = random(0,255);
+      fltBlue = random(0,255);
   }
+
+  fill(fltRed, fltGreen, fltBlue);
+  ellipse(fltCircPosX, fltCircPosY, 80, 80);
   
   // define other methods down here.
+}
 }
