@@ -75,18 +75,16 @@ public class Sketch extends PApplet {
     dvdLogo.resize(width / 3, height / 6);
     image(dvdLogo, fltDVDPosX, fltDVDPosY);
 
+    // processes sinocoidal fucntion so that the Circle can move in a wave motion
     fltCircYSpeed = (float)(Math.sin(fltWave)) * 10;
-
-    fltCircPosX += fltCircXSpeed;
-    fltCircPosY += fltCircMove + fltCircYSpeed;
     
+    // reverses direction of motion of animation once a barrier is reached 
     if (fltCircPosX - 40 < 0 || fltCircPosX + 40> width) {
       fltCircXSpeed *= -1;
       fltRed = random(0,255);
       fltGreen = random(0,255);
       fltBlue = random(0,255);
     }
-  
     if (fltCircPosY - 40 < 0  || fltCircPosY + 40 > height) {
       fltCircYSpeed *= -1;
       fltCircMove *= -1;
@@ -95,6 +93,11 @@ public class Sketch extends PApplet {
       fltBlue = random(0,255);
   }
 
+  // changes the X and Y position of the image each time the method is ran though, so that image can move
+  fltCircPosX += fltCircXSpeed;
+    fltCircPosY += fltCircMove + fltCircYSpeed;
+
+  // prints circle on screen using above values
   fill(fltRed, fltGreen, fltBlue);
   ellipse(fltCircPosX, fltCircPosY, 80, 80);
   
