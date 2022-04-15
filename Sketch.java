@@ -89,7 +89,7 @@ public class Sketch extends PApplet {
       fltBlue = random(0,255);
   }
 
-  // changes the X and Y position of the image each time the method is ran though, so that image can move
+  // changes the X and Y position of the image each time the method is ran though, so that image can move through animation path
   fltCircPosX += fltCircXSpeed;
     fltCircPosY += fltCircMove + fltCircYSpeed;
 
