@@ -50,14 +50,14 @@ public class Sketch extends PApplet {
     image(fabroa, 0, 0);
 
     // processes sinocoidal fucntion so that the DVD logo can move in a wave motion
-    fltWave += (Math.PI/6);
+    fltWave += (Math.PI / 6);
     fltDVDYSpeed = (float)(Math.sin(fltWave)) * 10;
     
     // reverses direction of motion of animation once a barrier is reached 
     if(fltDVDPosX > width - (width / 3) || fltDVDPosX < 0){
       fltDVDXSpeed *= -1;
     }
-    if(fltDVDPosY < 0 || fltDVDPosY > height - (height /6)){
+    if(fltDVDPosY < 0 || fltDVDPosY > height - (height / 6)){
       fltDVDYSpeed *= -1;
       fltDVDMove *= -1;
     }
@@ -75,7 +75,7 @@ public class Sketch extends PApplet {
     fltCircYSpeed = (float)(Math.sin(fltWave)) * 10;
     
     // reverses direction of motion of animation once a barrier is reached, and processes random function to be applied to color of circle 
-    if (fltCircPosX - 40 < 0 || fltCircPosX + 40> width) {
+    if (fltCircPosX - 40 < 0 || fltCircPosX + 40 > width) {
       fltCircXSpeed *= -1;
       fltRed = random(0,255);
       fltGreen = random(0,255);
